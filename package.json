@@ -1,0 +1,26 @@
+{
+  "author": "Paul Serby <paul@serby.net>",
+  "name": "major",
+  "description": "major control for projects",
+  "version": "0.0.1",
+  "tags": [ "ci", "build" ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:serby/major"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org"
+  },
+  "engines": {
+    "node": ">=0.10"
+  },
+  "dependencies": {
+    "lodash": "~2"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*",
+    "pliers": "*",
+    "jshint": "~2.1.10"
+  }
+}

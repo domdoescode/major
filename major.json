@@ -1,0 +1,54 @@
+{
+  // Name of the project. Must be unique on the major-server
+  "name": "Major",
+
+  // Create by the the server and added back to the config on setup
+  "id": "s89m0w02l",
+
+  // Location of the major-server for this project
+  // This will override the global URL, but not the command level
+  "url": "http://major.clockte.ch",
+
+  // The repo to watch
+  "repository": {
+
+    // Type of repo. Currently the only plan is to support git.
+    "type": "git",
+
+    // Repo URL
+    "url": "git@github.com:serby/major",
+
+    // Which branches to watch. Wild cards can be used.
+    "branches": [ "develop", "release/*" ],
+  },
+
+  // If a build fails and any of the commits before the head commit have not
+  // been built, run a bisect to find the last successful commit.
+  "bisectOnFail": true,
+
+  // The steps to run on each commit.
+  // If any step fails the build will halt.
+  "steps": {
+    "lint": "./node_modules/.bin/pliers lint",
+    "test": "./node_modules/.bin/pliers test",
+    "build": "./node_modules/.bin/pliers build"
+  },
+
+  // Scripts to run on a successful build
+  "success": [
+    "./node_modules/.bin/pliers package"
+
+    // These can be a URL to a service
+    "http://webservice.com/alerter?paul@serby.net"
+  ],
+
+  // Scripts to run on a failed build
+  "fail": [],
+
+  // Custom scripts you can run the CLI on any of the builds
+  "scripts": {
+    "pre": "node ./support/deploy.js",
+    "post": "node ./support/restart.js",
+    "health": "node ./support/health.js"
+  }
+}
